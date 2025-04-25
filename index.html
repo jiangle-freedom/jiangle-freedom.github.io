@@ -12,20 +12,19 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
+            /* Add background properties */
+            background-image: url('images/BackgroundTest.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Add a semi-transparent white overlay for better readability */
+            background-color: rgba(255, 255, 255, 0.9);
         }
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        main {
-            padding: 2rem 0;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            color: #666;
-            border-top: 1px solid #eee;
+        header, main, footer {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
