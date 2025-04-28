@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learning notes by jiangle-freedom">
+  <title>学习笔记 - Learning Knowledge Repository</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <style>
+    .markdown-content {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .study-list {
+      list-style: none;
+      padding: 0;
+    }
+    .study-list li {
+      margin-bottom: 0.5rem;
+    }
+    .study-list a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .study-list a:hover {
+      color: #007bff;
+    }
+    #loading {
+      text-align: center;
+      padding: 2rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation bar remains the same -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <!-- ... (keep existing navigation code) ... -->
+</nav>
+
+<div class="content-wrapper">
+  <header class="content-section">
+    <h1 class="text-center">学习笔记</h1>
+    <p class="text-center">Recording my learning journey</p>
+  </header>
+
+  <main class="markdown-content">
+    <div class="row">
+      <!-- Sidebar with file list -->
+      <div class="col-md-3">
+        <h3>笔记目录</h3>
+        <ul id="fileList" class="study-list"></ul>
+      </div>
+      <!-- Content area -->
+      <div class="col-md-9">
+        <div id="loading">加载中...</div>
+        <div id="content"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="content-section text-center">
+    <p>© 2024 jiangle-freedom | <a href="https://github.com/jiangle-freedom">GitHub</a></p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  const owner = 'jiangle-freedom';
+  const repo = 'study-records';
+  const loading = document.getElementById('loading');
+
+  async function fetchFileList() {
+    try {
+      const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents`);
+      if (!response.ok) throw new Error('Failed to fetch file list');
+      const files = await response.json();
+      return files.filter(file => file.name.endsWith('.md'));
+    } catch (error) {
+      console.error('Error fetching file list:', error);
+      return [];
+    }
+  }
+
+  async function fetchFileContent(file) {
+    try {
+      loading.style.display = 'block';
+      const response = await fetch(file.download_url);
+      if (!response.ok) throw new Error('Failed to fetch file content');
+      const content = await response.text();
+      document.getElementById('content').innerHTML = marked.parse(content);
+    } catch (error) {
+      console.error('Error fetching file content:', error);
+      document.getElementById('content').innerHTML = '<p>Error loading content</p>';
+    } finally {
+      loading.style.display = 'none';
+    }
+  }
+
+  async function initializePage() {
+    const files = await fetchFileList();
+    const fileList = document.getElementById('fileList');
+
+    files.forEach(file => {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = '#';
+      link.textContent = file.name.replace('.md', '');
+      link.onclick = (e) => {
+        e.preventDefault();
+        fetchFileContent(file);
+      };
+      li.appendChild(link);
+      fileList.appendChild(li);
+    });
+
+    // Load the first file by default if available
+    if (files.length > 0) {
+      fetchFileContent(files[0]);
+    } else {
+      document.getElementById('content').innerHTML = '<p>No markdown files found</p>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+</body>
+</html>
