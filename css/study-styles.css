@@ -1,0 +1,31 @@
+.markdown-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.study-list {
+    list-style: none;
+    padding: 0;
+}
+
+.study-list li {
+    margin-bottom: 0.5rem;
+}
+
+.study-list a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.study-list a:hover {
+    color: #007bff;
+}
+
+#loading {
+    text-align: center;
+    padding: 2rem;
+    display: none;
+}
