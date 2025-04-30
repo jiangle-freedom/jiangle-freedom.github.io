@@ -6,23 +6,68 @@
     <div class="panel-body">
         <form id="calculatorForm">
             <div class="mb-3">
-                <label for="baseAmount" class="form-label">公积金账户余额</label>
-                <input type="number" class="form-control" id="baseAmount" required>
+                <label class="form-label">选择人数</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="personCount" id="singlePerson" value="1" checked>
+                    <label class="form-check-label" for="singlePerson">单人</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="personCount" id="doublePerson" value="2">
+                    <label class="form-check-label" for="doublePerson">夫妻</label>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="monthlyDeposit" class="form-label">每月缴存金额</label>
-                <input type="number" class="form-control" id="monthlyDeposit" required>
+
+            <div id="personAInputs">
+                <h5>A的公积金信息</h5>
+                <div class="mb-3">
+                    <label for="baseAmountA" class="form-label">公积金账户余额</label>
+                    <input type="number" class="form-control" id="baseAmountA" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="monthlyDepositA" class="form-label">每月缴存金额</label>
+                    <input type="number" class="form-control" id="monthlyDepositA" step="0.01" required>
+                </div>
+<!--                <div class="my-3">-->
+<!--                    <label for="availableAmountA" class="form-label">最大可支取额度</label>-->
+<!--                    <input type="number" class="form-control" id="availableAmountA" disabled required>-->
+<!--                </div>-->
             </div>
-            <div class="mb-3">
-                <label for="months" class="form-label">计划几个月后支取</label>
-                <input type="number" class="form-control" id="months" required>
+
+            <div id="personBInputs" style="display: none;">
+                <h5>B的公积金信息</h5>
+                <div class="mb-3">
+                    <label for="baseAmountB" class="form-label">公积金账户余额</label>
+                    <input type="number" class="form-control" id="baseAmountB" step="0.01">
+                </div>
+                <div class="mb-3">
+                    <label for="monthlyDepositB" class="form-label">每月缴存金额</label>
+                    <input type="number" class="form-control" id="monthlyDepositB" step="0.01">
+                </div>
+<!--                <div class="my-3">-->
+<!--                    <label for="availableAmountB" class="form-label">最大可支取额度</label>-->
+<!--                    <input type="number" class="form-control" id="availableAmountB" disabled required>-->
+<!--                </div>-->
             </div>
+
+            <hr class="my-4">
+
             <div class="mb-3">
-                <label for="interestRate" class="form-label">年利率(%)</label>
-                <input type="number" class="form-control" id="interestRate" value="2.75" step="0.01" required>
+                <div class="mb-3">
+                    <label for="monthlyInstallment" class="form-label">月供</label>
+                    <input type="number" class="form-control" id="monthlyInstallment" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="months" class="form-label">还款月数</label>
+                    <input type="number" class="form-control" id="months" step="1" required>
+                </div>
+<!--                <div class="my-3">-->
+<!--                    <label for="totalInstallments" class="form-label">还款总额</label>-->
+<!--                    <input type="number" class="form-control" id="totalInstallments" disabled required>-->
+<!--                </div>-->
             </div>
             <button type="submit" class="btn btn-primary w-100">计算</button>
         </form>
-        <div id="result" class="mt-3"></div>
+        <div id="result" class="mt-3">
+        </div>
     </div>
 </div>
