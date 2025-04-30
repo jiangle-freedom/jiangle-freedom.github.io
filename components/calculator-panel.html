@@ -1,0 +1,28 @@
+<div id="calculatorPanel" class="side-panel">
+    <div class="panel-header">
+        <h3>公积金计算器</h3>
+        <button type="button" class="btn-close" onclick="closeCalculator()"></button>
+    </div>
+    <div class="panel-body">
+        <form id="calculatorForm">
+            <div class="mb-3">
+                <label for="baseAmount" class="form-label">公积金账户余额</label>
+                <input type="number" class="form-control" id="baseAmount" required>
+            </div>
+            <div class="mb-3">
+                <label for="monthlyDeposit" class="form-label">每月缴存金额</label>
+                <input type="number" class="form-control" id="monthlyDeposit" required>
+            </div>
+            <div class="mb-3">
+                <label for="months" class="form-label">计划几个月后支取</label>
+                <input type="number" class="form-control" id="months" required>
+            </div>
+            <div class="mb-3">
+                <label for="interestRate" class="form-label">年利率(%)</label>
+                <input type="number" class="form-control" id="interestRate" value="2.75" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">计算</button>
+        </form>
+        <div id="result" class="mt-3"></div>
+    </div>
+</div>
