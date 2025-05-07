@@ -114,3 +114,40 @@ body {
     background-color: #f8f9fa;
     padding: 1rem 0;
 }
+
+.golden-text {
+    position: fixed;
+    left: 50%;
+    bottom: 61.8vh;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%; /* 确保在移动设备上有边距 */
+    max-width: 600px;
+    padding: 0 15px;
+}
+
+.motto {
+    color: #FFFFFFCC;
+    margin: 0;
+    line-height: 1.5;
+    font-weight: normal;
+}
+
+.motto:first-child {
+    font-family: 'Satisfy', cursive;
+    font-size: clamp(2rem, 8vw, 3rem); /* 响应式字体大小 */
+}
+
+.motto:last-child {
+    font-family: 'xingkai TC', cursive;
+    font-size: clamp(2rem, 8vw, 3rem); /* 响应式字体大小 */
+}
+
+/* 针对特小屏幕的调整 */
+@media (max-width: 320px) {
+    .golden-text {
+        width: 95%;
+        padding: 0 10px;
+    }
+}
+
