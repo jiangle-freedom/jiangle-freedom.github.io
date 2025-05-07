@@ -12,6 +12,7 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 60px; /* 为固定导航栏留出空间 */
 }
 
 .navbar {
@@ -107,4 +108,9 @@ body {
     margin-top: 1rem;
     background-color: rgba(0,0,0,0.05);
     border-radius: 4px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 1rem 0;
 }
